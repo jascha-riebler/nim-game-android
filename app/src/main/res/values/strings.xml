@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Nim Spiel</string>
+    <string name="app_name">Nim</string>
+    <string name="creator_name">by Jascha Riebler</string>
 </resources>
