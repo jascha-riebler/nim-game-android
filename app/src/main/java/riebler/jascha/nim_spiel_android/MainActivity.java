@@ -9,6 +9,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ViewPager mainViewPager;
     private LinearLayout mainLinearLayout;
+    private SliderAdapter sliderAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,5 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
         mainViewPager = (ViewPager) findViewById(R.id.mainViewPager);
         mainLinearLayout = (LinearLayout) findViewById(R.id.mainLinearLayout);
+        sliderAdapter = new SliderAdapter(this);
+        mainViewPager.setAdapter(sliderAdapter);
     }
 }
