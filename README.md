@@ -1,2 +1,2 @@
-# Nim-Game Android App (German)
+# Nim-Game Android App
 Hello there ^^
