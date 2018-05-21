@@ -1,11 +1,14 @@
 package riebler.jascha.nim_spiel_android;
 
+import android.content.Intent;
+import android.media.Image;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -27,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         mainLinearLayout = (LinearLayout) findViewById(R.id.mainLinearLayout);
         mainNextButton = (Button) findViewById(R.id.nextBtn);
         mainBackButton = (Button) findViewById(R.id.backBtn);
-        sliderAdapter = new SliderAdapter(this);
+        sliderAdapter = new SliderAdapter(MainActivity.this);
         mainViewPager.setAdapter(sliderAdapter);
         addDotsIndicator(0);
         mainViewPager.addOnPageChangeListener(viewListener);
@@ -41,6 +44,20 @@ public class MainActivity extends AppCompatActivity {
                 mainViewPager.setCurrentItem(mainCurrentPage - 1);
             }
         });
+
+    }
+
+    public void SelectionBtn(){
+        final Intent MainToNimClassic = new Intent(this,Nimclassic_menu.class);
+        final Intent MainToNimFun = new Intent(this,Nimfun_menu.class);
+        final Intent MainToAbout = new Intent(this,About.class);
+        if(mainCurrentPage == 0){
+            startActivity(MainToNimClassic);
+        }else if(mainCurrentPage == 1){
+            startActivity(MainToNimFun);
+        }else{
+            startActivity(MainToAbout);
+        }
     }
 
     public void addDotsIndicator(int position){
