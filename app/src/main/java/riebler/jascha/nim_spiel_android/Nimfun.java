@@ -8,6 +8,6 @@ public class Nimfun extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nimfun);
+        setContentView(R.layout.activity_nim);
     }
 }

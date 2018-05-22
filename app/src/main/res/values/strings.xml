@@ -4,4 +4,5 @@
     <string name="nimclassic_name">NIM Classic</string>
     <string name="nimfun_name">NIM Fun</string>
     <string name="about_name">About</string>
+    <string name="nim_row_message">Only select Dots out of one Row!</string>
 </resources>
