@@ -24,7 +24,9 @@
             android:screenOrientation="portrait" />
         <activity android:name=".Nimclassic_menu" />
         <activity android:name=".Nimfun_menu" />
-        <activity android:name=".About"></activity>
+        <activity android:name=".About" />
+        <activity android:name=".Nimclassic" />
+        <activity android:name=".Nimfun"></activity>
     </application>
 
 </manifest>

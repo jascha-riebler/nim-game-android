@@ -1,6 +1,7 @@
 package riebler.jascha.nim_spiel_android;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -40,6 +41,7 @@ public class Nimclassic_menu extends AppCompatActivity implements AdapterView.On
         button_continue = (Button) findViewById(R.id.nimclassic_menu_continuebtn);
         checkBox_misere = (CheckBox) findViewById(R.id.nimclassic_menu_checkbox);
         spinner_startingplayer = (Spinner) findViewById(R.id.nimclassic_menu_spinner);
+        final Intent NimClassicMenuToNimClassic = new Intent(this,Nimclassic.class);
 
         difficulty = mPreferences.getInt("difficulty",0);
         misere = mPreferences.getBoolean("misere",false);
@@ -81,6 +83,13 @@ public class Nimclassic_menu extends AppCompatActivity implements AdapterView.On
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 mEditor.putBoolean("misere",isChecked);
                 mEditor.commit();
+            }
+        });
+
+        button_continue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(NimClassicMenuToNimClassic);
             }
         });
 
