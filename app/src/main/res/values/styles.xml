@@ -10,6 +10,10 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <style name="MySpinner" parent="Base.Widget.AppCompat.Spinner">
+        <!-- Customize your theme here. -->
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
 
 
 

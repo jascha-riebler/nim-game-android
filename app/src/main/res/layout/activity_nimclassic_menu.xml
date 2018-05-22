@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.26" />
+        app:layout_constraintGuide_percent="0.24" />
 
     <SeekBar
         android:id="@+id/nimclassic_menu_seekBar"
@@ -55,20 +55,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.42" />
+        app:layout_constraintGuide_percent="0.34" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.57" />
+        app:layout_constraintGuide_percent="0.44" />
 
     <TextView
         android:id="@+id/nimclassic_menu_seekbartitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -85,7 +84,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.78" />
+        app:layout_constraintGuide_percent="0.76" />
 
     <TextView
         android:id="@+id/nimclassic_menu_seekbar_info"
@@ -125,7 +124,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:buttonTint="@color/colorWhite"
         android:padding="0dp"
         android:text=""
@@ -139,7 +138,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="10dp"
         android:text="Misere "
         android:textColor="@color/colorWhite"
         android:textSize="20sp"
@@ -153,15 +152,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.6825397" />
+        app:layout_constraintGuide_percent="0.6" />
 
     <TextView
         android:id="@+id/nimclassic_menu_spinner_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="6dp"
-        android:text="Starting Player:"
+        android:text="First Move:"
         android:textColor="@color/colorWhite"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline7"
@@ -170,14 +170,16 @@
 
     <Spinner
         android:id="@+id/nimclassic_menu_spinner"
+        style="@style/MySpinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:backgroundTint="@color/colorPrimary"
-        android:foregroundTint="@color/colorWhite"
+        android:backgroundTint="@color/colorWhite"
+        android:popupBackground="@color/colorPrimary"
+
         app:layout_constraintBottom_toTopOf="@+id/guideline7"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toEndOf="@+id/nimclassic_menu_spinner_title"

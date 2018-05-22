@@ -4,13 +4,17 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class Nimclassic_menu extends AppCompatActivity {
+public class Nimclassic_menu extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private SeekBar seekbar;
     private TextView seekbar_info;
@@ -22,6 +26,7 @@ public class Nimclassic_menu extends AppCompatActivity {
     private int difficulty;
     private boolean misere;
     private int startingplayer;
+    private String[] spinner_choices;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +40,11 @@ public class Nimclassic_menu extends AppCompatActivity {
         button_continue = (Button) findViewById(R.id.nimclassic_menu_continuebtn);
         checkBox_misere = (CheckBox) findViewById(R.id.nimclassic_menu_checkbox);
         spinner_startingplayer = (Spinner) findViewById(R.id.nimclassic_menu_spinner);
+
         difficulty = mPreferences.getInt("difficulty",0);
         misere = mPreferences.getBoolean("misere",false);
         startingplayer = mPreferences.getInt("startingplayer",0);
+        spinner_choices = new String[]{"Player","Computer","Random"};
 
         seekbar_info.setText(""+difficulty);
         seekbar.setProgress(difficulty);
@@ -62,7 +69,47 @@ public class Nimclassic_menu extends AppCompatActivity {
             }
         });
 
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(Nimclassic_menu.this,R.layout.spinner_item,spinner_choices);
+        adapter.setDropDownViewResource(R.layout.spinner_item);
+        spinner_startingplayer.setAdapter(adapter);
+        spinner_startingplayer.setOnItemSelectedListener(this);
+        spinner_startingplayer.setSelection(startingplayer);
+
+        checkBox_misere.setChecked(misere);
+        checkBox_misere.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mEditor.putBoolean("misere",isChecked);
+                mEditor.commit();
+            }
+        });
 
 
     }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        switch (position) {
+            case 0:
+                mEditor.putInt("startingplayer",0);
+                mEditor.commit();
+                break;
+            case 1:
+                mEditor.putInt("startingplayer",1);
+                mEditor.commit();
+                break;
+            case 2:
+                mEditor.putInt("startingplayer",2);
+                mEditor.commit();
+                break;
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+
+
 }
