@@ -24,6 +24,7 @@ public class Nimfun extends AppCompatActivity {
     private boolean[][] board;
     private boolean[][] oldboard;
     private int numberofchangedrows;
+    private int[] computerboard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,7 @@ public class Nimfun extends AppCompatActivity {
         finishturn_btn = (Button) findViewById(R.id.nim_finishturn_btn);
         row_messagebox = (TextView) findViewById(R.id.nim_row_messagebox);
         row_messagebox.setVisibility(View.INVISIBLE);
+        computerboard = new int[4];
 
         dots = new CheckBox[5][8];
         board = new boolean[5][8];
@@ -59,7 +61,6 @@ public class Nimfun extends AppCompatActivity {
             public void onClick(View v) {
 
                 numberofchangedrows = 0;
-                Log.i("baum3",""+numberofchangedrows);
                 for(int a=1; a<5; a++){
                     for(int b=1; b<8; b++){
                         if(dots[a][b].isChecked()){
@@ -81,23 +82,43 @@ public class Nimfun extends AppCompatActivity {
                         numberofchangedrows++;
                     }
                 }
-                Log.i("baum3",""+numberofchangedrows);
+
                 if(numberofchangedrows == 1){
                     for(int a=1; a<5; a++){
                         for(int b=1; b<8; b++){
                             if(dots[a][b].isChecked()){
                                 dots[a][b].setVisibility(View.INVISIBLE);
                                 dots[a][b].setClickable(false);
+                                row_messagebox.setVisibility(View.INVISIBLE);
                             }
                         }
                     }
+                    getComputerMove();
                 }else{
                     row_messagebox.setVisibility(View.VISIBLE);
                 }
             }
         });
 
+    }
 
+    private void getComputerMove(){
+        int i = 0;
+        for(int a=1;a<5;a++){
+            i = 0;
+            for(int b=1;b<8;b++){
+                if(!board[a][b]){
+                    i++;
+                }
+            }
+            computerboard[a-1] = i;
+        }
 
     }
+
+
+
+
+
+
 }
