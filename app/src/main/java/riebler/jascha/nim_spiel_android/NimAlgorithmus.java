@@ -22,7 +22,7 @@ public class NimAlgorithmus {
         while (true) {
             int reihe = rn.nextInt(spielfeld.length);
             if (spielfeld[reihe]!=0) {
-                spielfeld[reihe] = spielfeld[reihe] - rn.nextInt(spielfeld[reihe]) - 1;
+                spielfeld[reihe] = spielfeld[reihe] - 1 - rn.nextInt(spielfeld[reihe]);
                 return spielfeld;
             }
         }

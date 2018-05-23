@@ -25,6 +25,7 @@ public class Nimfun extends AppCompatActivity {
     private boolean[][] oldboard;
     private int numberofchangedrows;
     private int[] computerboard;
+    private int[] oldcomputerboard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,8 @@ public class Nimfun extends AppCompatActivity {
         row_messagebox = (TextView) findViewById(R.id.nim_row_messagebox);
         row_messagebox.setVisibility(View.INVISIBLE);
         computerboard = new int[4];
+        oldcomputerboard = new int[4];
+
 
         dots = new CheckBox[5][8];
         board = new boolean[5][8];
@@ -112,8 +115,38 @@ public class Nimfun extends AppCompatActivity {
                 }
             }
             computerboard[a-1] = i;
-            
         }
+        System.arraycopy(computerboard,0,oldcomputerboard,0,computerboard.length);
+        computerboard = NimAlgorithmus.getSpielzug(computerboard,misere,difficulty);
+        Log.i("1",""+computerboard[0]);
+        Log.i("2",""+computerboard[1]);
+        Log.i("3",""+computerboard[2]);
+        Log.i("4",""+computerboard[3]);
+        Log.i("1o",""+oldcomputerboard[0]);
+        Log.i("2o",""+oldcomputerboard[1]);
+        Log.i("3o",""+oldcomputerboard[2]);
+        Log.i("4o",""+oldcomputerboard[3]);
+        for(int row=0;row<4;row++){
+            if(oldcomputerboard[row]!=computerboard[row]){
+                Log.i("krass",""+row);
+                int dotschanged = 0;
+                for(int dotposition = 7;dotposition>0;dotposition--){
+                    Log.i("krass",""+dotposition);
+                    if(!board[row+1][dotposition]){
+                        dots[row+1][dotposition].setVisibility(View.INVISIBLE);
+                        dots[row+1][dotposition].setClickable(false);
+                        board[row+1][dotposition] = true;
+                        dotschanged++;
+                    }
+                    if(dotschanged == oldcomputerboard[row]-computerboard[row]){
+                        break;
+                    }
+
+                }
+
+            }
+        }
+
 
     }
 
