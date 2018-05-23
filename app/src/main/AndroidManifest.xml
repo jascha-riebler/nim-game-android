@@ -22,11 +22,21 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".Nimclassic_menu" />
-        <activity android:name=".Nimfun_menu" />
-        <activity android:name=".About" />
-        <activity android:name=".Nimclassic" />
-        <activity android:name=".Nimfun"></activity>
+        <activity
+            android:name=".Nimclassic_menu"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Nimfun_menu"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".About"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Nimclassic"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Nimfun"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

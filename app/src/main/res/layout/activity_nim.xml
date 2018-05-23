@@ -55,7 +55,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/nim_finishturn_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/nim_finishturn_btn"
+        app:layout_constraintVertical_bias="0.2" />
 
     <TextView
         android:id="@+id/nim_title"
