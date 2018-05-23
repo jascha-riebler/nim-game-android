@@ -22,6 +22,8 @@ public class Nimfun extends AppCompatActivity {
     private int startingplayer;
     private CheckBox[][] dots;
     private boolean[][] board;
+    private boolean[][] oldboard;
+    private int numberofchangedrows;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,32 +36,63 @@ public class Nimfun extends AppCompatActivity {
         startingplayer = mPreferences.getInt("startingplayer",0);
         finishturn_btn = (Button) findViewById(R.id.nim_finishturn_btn);
         row_messagebox = (TextView) findViewById(R.id.nim_row_messagebox);
-
-
+        row_messagebox.setVisibility(View.INVISIBLE);
 
         dots = new CheckBox[5][8];
         board = new boolean[5][8];
         for(int a=1; a<5; a++){
             for(int b=1; b<8; b++){
-
                 String checkboxid = "nim_game_"+a+"-"+b;
                 int resid = Nimfun.this.getResources().getIdentifier(checkboxid,"id",Nimfun.this.getPackageName());
                 dots[a][b] = (CheckBox) findViewById(resid);
                 board[a][b] = false;
             }
         }
+        oldboard = new boolean[5][8];
+        for(int a=0; a<5; a++){
+            System.arraycopy(board[a],0,oldboard[a],0,board[a].length);
+        }
+
 
         finishturn_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                numberofchangedrows = 0;
+                Log.i("baum3",""+numberofchangedrows);
                 for(int a=1; a<5; a++){
                     for(int b=1; b<8; b++){
                         if(dots[a][b].isChecked()){
                             board[a][b] = true;
-                            dots[a][b].setVisibility(View.INVISIBLE);
-                            dots[a][b].setClickable(false);
+                        }else {
+                            board[a][b] = false;
                         }
                     }
+                }
+                for(int a=1;a<5;a++){
+                    boolean c = false;
+                    for(int b=1; b<8; b++){
+
+                        if(!board[a][b] == oldboard[a][b]){
+                            c = true;
+                        }
+                    }
+                    if(c){
+                        numberofchangedrows++;
+                    }
+                }
+                Log.i("baum3",""+numberofchangedrows);
+                if(numberofchangedrows == 1){
+                    for(int a=1; a<5; a++){
+                        for(int b=1; b<8; b++){
+                            if(dots[a][b].isChecked()){
+                                dots[a][b].setVisibility(View.INVISIBLE);
+                                dots[a][b].setClickable(false);
+                            }
+                        }
+                    }
+                }else{
+                    row_messagebox.setVisibility(View.VISIBLE);
                 }
             }
         });
