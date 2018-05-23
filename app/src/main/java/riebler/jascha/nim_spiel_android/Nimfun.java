@@ -68,11 +68,14 @@ public class Nimfun extends AppCompatActivity {
                     for(int b=1; b<8; b++){
                         if(dots[a][b].isChecked()){
                             board[a][b] = true;
+                            Log.i("a",""+a);
+                            Log.i("b",""+b);
                         }else {
                             board[a][b] = false;
                         }
                     }
                 }
+                Log.i("toll",""+board[2][7]);
                 for(int a=1;a<5;a++){
                     boolean c = false;
                     for(int b=1; b<8; b++){
@@ -85,7 +88,6 @@ public class Nimfun extends AppCompatActivity {
                         numberofchangedrows++;
                     }
                 }
-
                 if(numberofchangedrows == 1){
                     for(int a=1; a<5; a++){
                         for(int b=1; b<8; b++){
@@ -96,7 +98,11 @@ public class Nimfun extends AppCompatActivity {
                             }
                         }
                     }
+
                     getComputerMove();
+                    for(int a=0; a<5; a++){
+                        System.arraycopy(board[a],0,oldboard[a],0,board[a].length);
+                    }
                 }else{
                     row_messagebox.setVisibility(View.VISIBLE);
                 }
@@ -114,27 +120,29 @@ public class Nimfun extends AppCompatActivity {
                     i++;
                 }
             }
+
+
             computerboard[a-1] = i;
         }
         System.arraycopy(computerboard,0,oldcomputerboard,0,computerboard.length);
         computerboard = NimAlgorithmus.getSpielzug(computerboard,misere,difficulty);
-        Log.i("1",""+computerboard[0]);
-        Log.i("2",""+computerboard[1]);
-        Log.i("3",""+computerboard[2]);
-        Log.i("4",""+computerboard[3]);
-        Log.i("1o",""+oldcomputerboard[0]);
-        Log.i("2o",""+oldcomputerboard[1]);
-        Log.i("3o",""+oldcomputerboard[2]);
-        Log.i("4o",""+oldcomputerboard[3]);
+        Log.i("computerboardold",""+oldcomputerboard[0]);
+        Log.i("computerboardold",""+oldcomputerboard[1]);
+        Log.i("computerboardold",""+oldcomputerboard[2]);
+        Log.i("computerboardold",""+oldcomputerboard[3]);
+        Log.i("computerboard",""+computerboard[0]);
+        Log.i("computerboard",""+computerboard[1]);
+        Log.i("computerboard",""+computerboard[2]);
+        Log.i("computerboard",""+computerboard[3]);
+
         for(int row=0;row<4;row++){
             if(oldcomputerboard[row]!=computerboard[row]){
-                Log.i("krass",""+row);
                 int dotschanged = 0;
                 for(int dotposition = 7;dotposition>0;dotposition--){
-                    Log.i("krass",""+dotposition);
                     if(!board[row+1][dotposition]){
                         dots[row+1][dotposition].setVisibility(View.INVISIBLE);
                         dots[row+1][dotposition].setClickable(false);
+                        dots[row+1][dotposition].setChecked(true);
                         board[row+1][dotposition] = true;
                         dotschanged++;
                     }
@@ -146,8 +154,6 @@ public class Nimfun extends AppCompatActivity {
 
             }
         }
-
-
     }
 
 
