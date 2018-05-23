@@ -1,6 +1,7 @@
 package riebler.jascha.nim_spiel_android;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +11,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
+
+import java.util.Random;
 
 public class Nimfun extends AppCompatActivity {
 
@@ -41,7 +44,7 @@ public class Nimfun extends AppCompatActivity {
         row_messagebox.setVisibility(View.INVISIBLE);
         computerboard = new int[4];
         oldcomputerboard = new int[4];
-
+        Random rn = new Random();
 
         dots = new CheckBox[5][8];
         board = new boolean[5][8];
@@ -58,6 +61,12 @@ public class Nimfun extends AppCompatActivity {
             System.arraycopy(board[a],0,oldboard[a],0,board[a].length);
         }
 
+        if(startingplayer==2 && rn.nextBoolean()){
+            startingplayer = 1;
+        }
+        if(startingplayer==1){
+            getComputerMove();
+        }
 
         finishturn_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,14 +77,11 @@ public class Nimfun extends AppCompatActivity {
                     for(int b=1; b<8; b++){
                         if(dots[a][b].isChecked()){
                             board[a][b] = true;
-                            Log.i("a",""+a);
-                            Log.i("b",""+b);
                         }else {
                             board[a][b] = false;
                         }
                     }
                 }
-                Log.i("toll",""+board[2][7]);
                 for(int a=1;a<5;a++){
                     boolean c = false;
                     for(int b=1; b<8; b++){
@@ -98,7 +104,6 @@ public class Nimfun extends AppCompatActivity {
                             }
                         }
                     }
-
                     getComputerMove();
                     for(int a=0; a<5; a++){
                         System.arraycopy(board[a],0,oldboard[a],0,board[a].length);
@@ -124,17 +129,15 @@ public class Nimfun extends AppCompatActivity {
 
             computerboard[a-1] = i;
         }
+        if(computerboard[0]==0 && computerboard[1]==0 && computerboard[2]==0 && computerboard[3]==0){
+            mEditor.putString("lastmove","computer");
+            mEditor.commit();
+            final Intent NimfunToExit = new Intent(this,Nimfun_exit.class);
+            startActivity(NimfunToExit);
+            return;
+        }
         System.arraycopy(computerboard,0,oldcomputerboard,0,computerboard.length);
         computerboard = NimAlgorithmus.getSpielzug(computerboard,misere,difficulty);
-        Log.i("computerboardold",""+oldcomputerboard[0]);
-        Log.i("computerboardold",""+oldcomputerboard[1]);
-        Log.i("computerboardold",""+oldcomputerboard[2]);
-        Log.i("computerboardold",""+oldcomputerboard[3]);
-        Log.i("computerboard",""+computerboard[0]);
-        Log.i("computerboard",""+computerboard[1]);
-        Log.i("computerboard",""+computerboard[2]);
-        Log.i("computerboard",""+computerboard[3]);
-
         for(int row=0;row<4;row++){
             if(oldcomputerboard[row]!=computerboard[row]){
                 int dotschanged = 0;
@@ -154,11 +157,11 @@ public class Nimfun extends AppCompatActivity {
 
             }
         }
+        if(computerboard[0]==0 && computerboard[1]==0 && computerboard[2]==0 && computerboard[3]==0){
+            mEditor.putString("lastmove","computer");
+            mEditor.commit();
+            final Intent NimfunToExit = new Intent(this,Nimfun_exit.class);
+            startActivity(NimfunToExit);
+        }
     }
-
-
-
-
-
-
 }

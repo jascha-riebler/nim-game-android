@@ -36,7 +36,11 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Nimfun"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".Nimfun_exit"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Nimclassic_exit"
+            android:screenOrientation="portrait" ></activity>
     </application>
 
 </manifest>
