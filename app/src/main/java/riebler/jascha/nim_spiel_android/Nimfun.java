@@ -112,6 +112,7 @@ public class Nimfun extends AppCompatActivity {
                 }
             }
             computerboard[a-1] = i;
+            
         }
 
     }
