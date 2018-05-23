@@ -3,6 +3,7 @@ package riebler.jascha.nim_spiel_android;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,7 +13,11 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
+import java.util.Date;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 public class Nimfun extends AppCompatActivity {
 
@@ -66,12 +71,14 @@ public class Nimfun extends AppCompatActivity {
         }
         if(startingplayer==1){
             getComputerMove();
+            for(int a=0; a<5; a++){
+                System.arraycopy(board[a],0,oldboard[a],0,board[a].length);
+            }
         }
 
         finishturn_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 numberofchangedrows = 0;
                 for(int a=1; a<5; a++){
                     for(int b=1; b<8; b++){
@@ -138,15 +145,18 @@ public class Nimfun extends AppCompatActivity {
         }
         System.arraycopy(computerboard,0,oldcomputerboard,0,computerboard.length);
         computerboard = NimAlgorithmus.getSpielzug(computerboard,misere,difficulty);
+        CheckBox[] computerchangeddots = new CheckBox[1];
         for(int row=0;row<4;row++){
             if(oldcomputerboard[row]!=computerboard[row]){
+                computerchangeddots = new CheckBox[oldcomputerboard[row]-computerboard[row]];
                 int dotschanged = 0;
+                final int rowchanged = row;
                 for(int dotposition = 7;dotposition>0;dotposition--){
                     if(!board[row+1][dotposition]){
-                        dots[row+1][dotposition].setVisibility(View.INVISIBLE);
+                        computerchangeddots[dotschanged] = dots[row+1][dotposition];
                         dots[row+1][dotposition].setClickable(false);
                         dots[row+1][dotposition].setChecked(true);
-                        board[row+1][dotposition] = true;
+                        board[rowchanged+1][dotposition] = true;
                         dotschanged++;
                     }
                     if(dotschanged == oldcomputerboard[row]-computerboard[row]){
@@ -154,14 +164,48 @@ public class Nimfun extends AppCompatActivity {
                     }
 
                 }
-
             }
         }
-        if(computerboard[0]==0 && computerboard[1]==0 && computerboard[2]==0 && computerboard[3]==0){
-            mEditor.putString("lastmove","computer");
-            mEditor.commit();
-            final Intent NimfunToExit = new Intent(this,Nimfun_exit.class);
-            startActivity(NimfunToExit);
+
+        final CheckBox[] computerchangeddots2 = computerchangeddots.clone();
+        final Intent NimfunToExit = new Intent(this,Nimfun_exit.class);
+
+        for(int a=1; a<5; a++){
+            for(int b=1; b<8; b++){
+                if(!board[a][b]){
+                    dots[a][b].setClickable(false);
+                }
+            }
         }
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                for(int k=0;k<computerchangeddots2.length;k++){
+                    computerchangeddots2[k].setVisibility(View.INVISIBLE);
+                }
+                if(computerboard[0]==0 && computerboard[1]==0 && computerboard[2]==0 && computerboard[3]==0){
+                    mEditor.putString("lastmove","computer");
+                    mEditor.commit();
+                    startActivity(NimfunToExit);
+                }
+                for(int a=1; a<5; a++){
+                    for(int b=1; b<8; b++){
+                        if(!board[a][b]){
+                            dots[a][b].setClickable(true);
+                        }
+                    }
+                }
+            }
+
+        },2000);
+
+
+
+
+
+
+
     }
 }
