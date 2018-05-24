@@ -26,6 +26,7 @@ public class Nimfun extends AppCompatActivity {
     private Button finishturn_btn;
     private TextView row_messagebox;
     private TextView computers_turn;
+    private TextView stopwatch_textview;
     private int difficulty;
     private boolean misere;
     private int startingplayer;
@@ -35,6 +36,9 @@ public class Nimfun extends AppCompatActivity {
     private int numberofchangedrows;
     private int[] computerboard;
     private int[] oldcomputerboard;
+    private long stopwatch_starttime;
+    private Handler stopwatch_handler;
+    private Runnable stopwatch_runnable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +46,11 @@ public class Nimfun extends AppCompatActivity {
         setContentView(R.layout.activity_nim);
         mPreferences = getSharedPreferences("riebler.jascha.nim_spiel_android.PREFERENCE_FILE_KEY", Context.MODE_PRIVATE);
         mEditor = mPreferences.edit();
-        difficulty = mPreferences.getInt("difficulty",0);
+        difficulty = mPreferences.getInt("difficulty",1);
         misere = mPreferences.getBoolean("misere",false);
         startingplayer = mPreferences.getInt("startingplayer",0);
         finishturn_btn = (Button) findViewById(R.id.nim_finishturn_btn);
+        stopwatch_textview = (TextView) findViewById(R.id.nim_stopwatch_textview);
         row_messagebox = (TextView) findViewById(R.id.nim_row_messagebox);
         computers_turn = (TextView) findViewById(R.id.nim_computers_turn);
         row_messagebox.setVisibility(View.INVISIBLE);
@@ -53,7 +58,21 @@ public class Nimfun extends AppCompatActivity {
         computerboard = new int[4];
         oldcomputerboard = new int[4];
         Random rn = new Random();
-
+        stopwatch_starttime = 0;
+        stopwatch_handler = new Handler();
+        stopwatch_runnable = new Runnable() {
+            @Override
+            public void run() {
+                long millis = System.currentTimeMillis() - stopwatch_starttime;
+                int seconds = (int) (millis/1000);
+                int minutes = seconds / 60;
+                seconds = seconds % 60;
+                stopwatch_textview.setText(String.format("%d:%02d",minutes,seconds));
+                stopwatch_handler.postDelayed(this, 500);
+            }
+        };
+        stopwatch_starttime = System.currentTimeMillis();
+        stopwatch_handler.postDelayed(stopwatch_runnable, 0);
         dots = new CheckBox[5][8];
         board = new boolean[5][8];
         for(int a=1; a<5; a++){
@@ -78,7 +97,6 @@ public class Nimfun extends AppCompatActivity {
                 System.arraycopy(board[a],0,oldboard[a],0,board[a].length);
             }
         }
-
         finishturn_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

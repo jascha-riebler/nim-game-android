@@ -34,7 +34,7 @@ public class Nimclassic_menu extends AppCompatActivity implements AdapterView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nimclassic_menu);
         seekbar = (SeekBar) findViewById(R.id.nimclassic_menu_seekBar);
-        seekbar.setMax(10);
+        seekbar.setMax(9);
         seekbar_info = (TextView) findViewById(R.id.nimclassic_menu_seekbar_info);
         mPreferences = getSharedPreferences("riebler.jascha.nim_spiel_android.PREFERENCE_FILE_KEY", Context.MODE_PRIVATE);
         mEditor = mPreferences.edit();
@@ -43,17 +43,17 @@ public class Nimclassic_menu extends AppCompatActivity implements AdapterView.On
         spinner_startingplayer = (Spinner) findViewById(R.id.nimclassic_menu_spinner);
         final Intent NimClassicMenuToNimClassic = new Intent(this,Nimclassic.class);
 
-        difficulty = mPreferences.getInt("difficulty",0);
+        difficulty = mPreferences.getInt("difficulty",1);
         misere = mPreferences.getBoolean("misere",false);
         startingplayer = mPreferences.getInt("startingplayer",0);
         spinner_choices = new String[]{"Player","Computer","Random"};
 
         seekbar_info.setText(""+difficulty);
-        seekbar.setProgress(difficulty);
+        seekbar.setProgress(difficulty - 1);
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                difficulty = progress;
+                difficulty = progress + 1;
                 mEditor.putInt("difficulty",difficulty);
                 mEditor.commit();
                 seekbar_info.setText(""+difficulty);
