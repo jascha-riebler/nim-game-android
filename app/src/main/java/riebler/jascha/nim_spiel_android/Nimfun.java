@@ -83,6 +83,23 @@ public class Nimfun extends AppCompatActivity {
                 board[a][b] = false;
             }
         }
+
+        for(int a=1; a<5; a++){
+            int r = 6-rn.nextInt(7);
+            for(int b=7; b+r>7; b--){
+                board[a][b] = true;
+            }
+        }
+
+        for(int a=1;a<5;a++){
+            for(int b=1;b<8;b++){
+                if(board[a][b]){
+                    dots[a][b].setClickable(false);
+                    dots[a][b].setVisibility(View.INVISIBLE);
+                    dots[a][b].setChecked(true);
+                }
+            }
+        }
         oldboard = new boolean[5][8];
         for(int a=0; a<5; a++){
             System.arraycopy(board[a],0,oldboard[a],0,board[a].length);
