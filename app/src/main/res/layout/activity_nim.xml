@@ -406,5 +406,19 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.04" />
 
+    <TextView
+        android:id="@+id/nim_computers_turn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center_vertical|center_horizontal|center"
+        android:text="Computers Turn"
+        android:textColor="@color/colorWhite"
+        android:textSize="45sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/guideline2"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/guideline11" />
+
 
 </android.support.constraint.ConstraintLayout>

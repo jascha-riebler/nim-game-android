@@ -25,6 +25,7 @@ public class Nimfun extends AppCompatActivity {
     private SharedPreferences.Editor mEditor;
     private Button finishturn_btn;
     private TextView row_messagebox;
+    private TextView computers_turn;
     private int difficulty;
     private boolean misere;
     private int startingplayer;
@@ -46,7 +47,9 @@ public class Nimfun extends AppCompatActivity {
         startingplayer = mPreferences.getInt("startingplayer",0);
         finishturn_btn = (Button) findViewById(R.id.nim_finishturn_btn);
         row_messagebox = (TextView) findViewById(R.id.nim_row_messagebox);
+        computers_turn = (TextView) findViewById(R.id.nim_computers_turn);
         row_messagebox.setVisibility(View.INVISIBLE);
+        computers_turn.setVisibility(View.INVISIBLE);
         computerboard = new int[4];
         oldcomputerboard = new int[4];
         Random rn = new Random();
@@ -124,6 +127,9 @@ public class Nimfun extends AppCompatActivity {
     }
 
     private void getComputerMove(){
+        finishturn_btn.setClickable(false);
+        finishturn_btn.setVisibility(View.INVISIBLE);
+        computers_turn.setVisibility(View.VISIBLE);
         int i = 0;
         for(int a=1;a<5;a++){
             i = 0;
@@ -197,6 +203,9 @@ public class Nimfun extends AppCompatActivity {
                         }
                     }
                 }
+                finishturn_btn.setClickable(true);
+                finishturn_btn.setVisibility(View.VISIBLE);
+                computers_turn.setVisibility(View.INVISIBLE);
             }
 
         },2000);
