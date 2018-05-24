@@ -162,6 +162,8 @@ public class Nimfun extends AppCompatActivity {
         }
         if(computerboard[0]==0 && computerboard[1]==0 && computerboard[2]==0 && computerboard[3]==0){
             mEditor.putString("lastmove","computer");
+            stopwatch_handler.removeCallbacks(stopwatch_runnable);
+            mEditor.putString("recentscore",""+stopwatch_textview.getText());
             mEditor.commit();
             final Intent NimfunToExit = new Intent(this,Nimfun_exit.class);
             startActivity(NimfunToExit);
@@ -211,6 +213,8 @@ public class Nimfun extends AppCompatActivity {
                 }
                 if(computerboard[0]==0 && computerboard[1]==0 && computerboard[2]==0 && computerboard[3]==0){
                     mEditor.putString("lastmove","computer");
+                    stopwatch_handler.removeCallbacks(stopwatch_runnable);
+                    mEditor.putString("recentscore",""+stopwatch_textview.getText());
                     mEditor.commit();
                     startActivity(NimfunToExit);
                 }
