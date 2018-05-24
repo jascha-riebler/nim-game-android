@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Nim</string>
+    <string name="app_name">NIM</string>
     <string name="creator_name">by Jascha Riebler</string>
     <string name="nimclassic_name">NIM Classic</string>
     <string name="nimfun_name">NIM Fun</string>

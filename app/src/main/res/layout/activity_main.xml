@@ -35,6 +35,7 @@
         android:background="@android:color/transparent"
         android:text="Back"
         android:textColor="@color/colorWhite"
+        android:textSize="20sp"
         android:visibility="invisible" />
 
     <Button
@@ -45,5 +46,6 @@
         android:layout_alignParentEnd="true"
         android:background="@android:color/transparent"
         android:text="Next"
-        android:textColor="@color/colorWhite" />
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp" />
 </RelativeLayout>
