@@ -179,7 +179,7 @@ public class Nimclassic extends AppCompatActivity {
             computerboard[a-1] = i;
         }
         if(computerboard[0]==0 && computerboard[1]==0 && computerboard[2]==0 && computerboard[3]==0){
-            mEditor.putString("lastmove","computer");
+            mEditor.putString("lastmove","player");
             stopwatch_handler.removeCallbacks(stopwatch_runnable);
             mEditor.putString("recentscore",""+stopwatch_textview.getText());
             mEditor.commit();
