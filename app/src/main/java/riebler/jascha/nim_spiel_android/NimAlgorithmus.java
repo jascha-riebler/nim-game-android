@@ -20,7 +20,7 @@ public class NimAlgorithmus {
         return spielfeld;
     }
     public static int[] getZufaelligerSpielzug(int[] spielfeld){
-        // Aus einer zufälligen Reihe, die noch Spielsteine enthält werden zwischen einem und der in der Reihe noch verbleibenden Spielsteine entfernt.
+        // Aus einer zufälligen Reihe, wird eine bestimmte Anzahl an Spielsteinen entfernt. Diese kann zwischen einem Sielstein und allen Sielsteinen der Reihe liegen.
         Random rn = new Random();
         while (true) {
             int reihe = rn.nextInt(spielfeld.length);
@@ -31,7 +31,7 @@ public class NimAlgorithmus {
         }
     }
     public static int[] getSchadensbegrenzenderSpielzug(int[] spielfeld){
-        //Der "schadensbegrenzende" Spielzug besteht darin, lediglich einen Spielstein zu aus einer zufälligen Reihe zu entvernen, um dem Spieler noch möglichst viel Platz für Fehler zu lassen.
+        //Der "schadensbegrenzende" Spielzug besteht darin, lediglich einen Spielstein aus einer zufälligen Reihe zu entvernen, um dem Spieler noch möglichst viel Platz für Fehler zu lassen.
         Random rn = new Random();
         while (true) {
             int reihe = rn.nextInt(spielfeld.length);
@@ -42,14 +42,13 @@ public class NimAlgorithmus {
         }
     }
     public static int[] getOptimalerSpielzug(int[] spielfeld, boolean misere) {
-        //Die Gewinnstrategie wird in dem "ABOUT" Abschnitt der App behandelt.
         String nimsumme = "";
         int ReihenUeberEins = 0;
         int ReiheUeberEins = 0;
         int ReihenMitEins = 0;
         int ReiheMitEins = 0;
         for (int i = spielfeld.length-1; i>=0; i--) {
-            //Es wird die "Nimsumme" (binäre Addition ohne Übertragung aller Reihen) gebildet um zu sehen ob es sich um ein "ausgeglichenes" Spielfeld (Nimsumme = 0)handelt und/oder den Spielzug ersichtlich zu machen der das Spielfeld wieder "ausgleicht".
+            //Es wird die "Nimsumme" (binäre Addition ohne Übertragung aller Reihen) gebildet um zu sehen ob es sich um ein "ausgeglichenes" Spielfeld (Nimsumme = 0) handelt und/oder um den Spielzug ersichtlich zu machen, der das Spielfeld wieder "ausgleicht".
             nimsumme = addierenBinaer(nimsumme, umrechnenBinaer(spielfeld[i]));
             //Im Folgenden werden die Reihen mit mehr als einem Spielstein und die Reihen mit genau einem Spielstein gezählt. Es wird jeweils eine entsprechende Reihe gespiechert.
             if (spielfeld[i]>1) {
