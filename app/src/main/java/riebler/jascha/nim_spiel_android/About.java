@@ -36,8 +36,12 @@ public class About extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     about_info.setText(R.string.about_english);
+                    mEditor.putString("language","english");
+                    mEditor.commit();
                 }else{
                     about_info.setText(R.string.about_german);
+                    mEditor.putString("language","german");
+                    mEditor.commit();
                 }
             }
         });
