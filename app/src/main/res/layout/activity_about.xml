@@ -27,7 +27,7 @@
         android:gravity="left|center_vertical"
         android:text=""
         android:textColor="@color/colorWhite"
-        android:textSize="25sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline21"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

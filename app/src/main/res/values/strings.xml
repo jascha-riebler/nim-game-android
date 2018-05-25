@@ -5,6 +5,6 @@
     <string name="nimfun_name">NIM Fun</string>
     <string name="about_name">About</string>
     <string name="nim_row_message">Please select dots out of one row !</string>
-    <string name="about_german">Viel Spaß beim Spielen ^^</string>
-    <string name="about_english">English</string>
+    <string name="about_german">Ziel des Spiels ist es, die Spielsteine (Dots) strategisch so von dem Spielfeld zu entfernen, dass du den letzten Spielstein nehmen kannst. Bei der Misère-Variante ist es jedoch dein Ziel diesen letzten Spielstein eben nicht zu nehmen. Spielsteine dürfen nur aus einer einzigen Reihe ausgewählt werden. In dieser Reihe aber dafür beliebig viele. Das Auswählen eines Spielsteins kannst du durch nochmaliges Antippen rückgängig machen. Erst wenn du "FINISH TURN" gedrückt hast ist dein Spielzug beendet und der Computer ist am Zug. Wähle ganz zu Beginn aus, ob du NIM CLASSIC oder NIM FUN spielen möchtest. Bei NIM CLASSIC startest du immer mit einem pyramidenförmigen Spielfeld. Bei NIM FUN ist jedes Spielfeld eine Überraschung. Viel Spaß ^^</string>
+    <string name="about_english">Pick the last Dot and you win! If you are playing the Misère variant avoid picking the last Dot and try letting the computer take it to win. Dots can only be picked out of one row, but in that row you are free to select as many as you want. Made the wrong choice? No problem, just tap the Dot again. Your move ends by touching the FINISH TURN button. Now the computer goes on. At the Beginning you can choose between NIM CLASSIC and NIM FUN. NIM CLASSIC always starts a game with a board whose dots are configured as a pyramid. When playing NIM FUN the board will be a surprise every time. Have fun ^^</string>
 </resources>
